@@ -1,19 +1,19 @@
 const Table = require('cli-table');
 
 const { readJson } = require("../readers/json");
-const { dataPath } = require("../data");
+const { jsonUrl } = require("../data");
 
 module.exports = { 
     list() {
-        const data = readJson(dataPath);
+        const data = readJson(jsonUrl);
         const table = new Table({
-            head: ['id', 'item', 'status'],
-            colWidths: [30, 50, 10]
+            head: ['id', 'item', 'criado em' ,'status'],
+            colWidths: [40, 50, 28, 10]
         });
 
-        data.map((todo, index) =>
+        data.map((todo, _) =>
             table.push(
-                [index, todo.title, todo.done ? 'finalizado' : 'pendente']
+                [todo.id, todo.title, todo.createdAt, todo.done ? 'finalizado' : 'pendente']
             )
         );
         console.log(table.toString());
