@@ -8,7 +8,7 @@ module.exports = {
         const data = readJson(dataPath);
         const table = new Table({
             head: ['id', 'item', 'status'],
-            colWidths: [10, 50, 10]
+            colWidths: [30, 50, 10]
         });
 
         data.map((todo, index) =>

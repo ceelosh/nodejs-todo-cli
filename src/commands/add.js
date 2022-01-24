@@ -2,6 +2,7 @@ const inquirer = require("inquirer");
 const { join } = require('path');
 const { readJson } = require("../readers/json");
 const { writeJson } = require("../writers/json");
+const { v4: uuidv4 } = require('uuid');
 
 // data file 
 const dataPath = join(__dirname, '../data/todos.json');
@@ -24,6 +25,7 @@ module.exports = {
         let data = readJson(dataPath);
 
         data.push({
+            id: v4(),
             title: item || answer.item,
             done: false
         });
