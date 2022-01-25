@@ -3,6 +3,7 @@
 const program = require("commander");
 const version = require("../package.json").version;
 const figlet = require('figlet');
+const cron = require('node-cron');
 
 // commands
 const { add } =  require("./commands/add");
@@ -35,5 +36,9 @@ program
   .command("undone [id]")
   .description("Marca um item como não-finalizado")
   .action(async (itemId) => await undone(itemId));
+
+cron.schedule('0 0 * * *', () => {
+  console.log('executa todo dia meia-noite.');
+});
 
 program.parse(process.argv);
