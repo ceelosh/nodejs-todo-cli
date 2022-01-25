@@ -2,6 +2,7 @@
 
 const program = require("commander");
 const version = require("../package.json").version;
+const figlet = require('figlet');
 
 // commands
 const { add } =  require("./commands/add");
@@ -12,6 +13,8 @@ const { undone } = require("./commands/undone");
 
 // get version from package
 program.version(version);
+
+console.log(figlet.textSync('To-do Today'));
 
 program
   .command("add [todo]")
