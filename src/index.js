@@ -11,6 +11,9 @@ const { list } =  require("./commands/list");
 const { done } = require("./commands/done");
 const { undone } = require("./commands/undone");
 
+// tasks to put in scheduler
+
+const { backupTodo } = require("./tasks/backup");
 
 // get version from package
 program.version(version);
@@ -39,6 +42,10 @@ program
 
 cron.schedule('0 0 * * *', () => {
   console.log('executa todo dia meia-noite.');
+  backupTodo()
+}, {
+  scheduled: true,
+  timezone: "America/Sao_Paulo"
 });
 
 program.parse(process.argv);
